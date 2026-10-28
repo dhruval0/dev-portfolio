@@ -1,26 +1,80 @@
 @import "tailwindcss";
 
+/*
+  ============================================
+  THEME — change colors in ONE place below.
+  Edit these variables to recolor the whole site.
+  ============================================
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --desk-bg: #1a1612;
+  --desk-surface: #2a241c;
+  --desk-card: #332c22;
+  --desk-elevated: #3d3428;
+
+  /* Text */
+  --desk-text: #f2ebe3;
+  --desk-muted: #a89f93;
+  --desk-faint: #6e675c;
+
+  /* Accents (change these first!) */
+  --desk-accent: #e8a082;
+  --desk-accent-soft: #c4a882;
+  --desk-link: #8fb4c9;
+  --desk-success: #96a682;
+  --desk-tape: #c4b59a;
+  --desk-border: #4a4338;
+
+  /* Semantic aliases used in components */
+  --background: var(--desk-bg);
+  --foreground: var(--desk-text);
+  --muted: var(--desk-muted);
+  --surface: var(--desk-surface);
+  --card: var(--desk-card);
+  --elevated: var(--desk-elevated);
+  --accent: var(--desk-accent);
+  --accent-soft: var(--desk-accent-soft);
+  --link: var(--desk-link);
+  --success: var(--desk-success);
+  --tape: var(--desk-tape);
+  --border: var(--desk-border);
+  --faint: var(--desk-faint);
+}
+
+/* Optional light theme (toggle adds class="light" on <html>) */
+html.light {
+  --desk-bg: #f4efe6;
+  --desk-surface: #ebe4d8;
+  --desk-card: #ffffff;
+  --desk-elevated: #faf7f2;
+  --desk-text: #1a1612;
+  --desk-muted: #5c564c;
+  --desk-faint: #8a8378;
+  --desk-accent: #c45e3a;
+  --desk-accent-soft: #8a6f4e;
+  --desk-link: #2f6f8f;
+  --desk-success: #5a7a4a;
+  --desk-tape: #d4c4a8;
+  --desk-border: #d4cbbd;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* Soft desk glow */
+.desk-glow {
+  background:
+    radial-gradient(ellipse 80% 50% at 10% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%),
+    var(--background);
 }
