@@ -3,10 +3,11 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { SearchBar } from "@/components/layout/SearchBar";
 import { PromptCard } from "@/components/prompts/PromptCard";
 import { prompts } from "@/data/prompts";
+import { promptsPageStyles as s } from "./page.styles";
 
 export default function PromptsPage() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className={s.root}>
       <BackToDesk />
       <PageHeader
         title="Prompts"
@@ -14,7 +15,7 @@ export default function PromptsPage() {
       />
       <SearchBar placeholder="Search prompts..." />
 
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className={s.grid}>
         {prompts.map((prompt) => (
           <PromptCard key={prompt.id} prompt={prompt} />
         ))}

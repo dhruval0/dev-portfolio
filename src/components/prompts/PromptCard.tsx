@@ -1,52 +1,30 @@
 "use client";
 
-import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import type { PromptItem } from "@/types";
+import { promptCardStyles as s } from "./PromptCard.styles";
+import { usePromptCard } from "./usePromptCard";
 
 type PromptCardProps = {
   prompt: PromptItem;
 };
 
 export function PromptCard({ prompt }: PromptCardProps) {
-  const [copied, setCopied] = useState(false);
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(prompt.fullPrompt);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      setCopied(false);
-    }
-  }
+  const { copied, handleCopy } = usePromptCard(prompt.fullPrompt);
 
   return (
-    <article className="relative flex flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5">
-      {copied ? (
-        <span className="absolute right-4 top-4 rotate-6 rounded border border-[var(--accent)] px-2 py-1 font-[family-name:var(--font-script)] text-sm text-[var(--accent)]">
-          copied!
-        </span>
-      ) : null}
+    <article className={s.article}>
+      {copied ? <span className={s.stamp}>copied!</span> : null}
 
-      <div className="flex items-center justify-between gap-2">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--muted)]">
-          {prompt.category}
-        </p>
-        <span className="font-[family-name:var(--font-script)] text-sm text-[var(--accent)]">
-          copied {prompt.copyCount}x
-        </span>
+      <div className={s.header}>
+        <p className={s.category}>{prompt.category}</p>
+        <span className={s.copies}>copied {prompt.copyCount}x</span>
       </div>
 
-      <h3 className="mt-2 font-[family-name:var(--font-display)] text-xl">
-        {prompt.title}
-      </h3>
+      <h3 className={s.title}>{prompt.title}</h3>
+      <div className={s.preview}>{prompt.preview}</div>
 
-      <div className="mt-4 rounded-md border border-dashed border-[var(--border)] bg-[var(--surface)] p-3 font-mono text-xs leading-relaxed text-[var(--muted)]">
-        {prompt.preview}
-      </div>
-
-      <div className="mt-4 flex flex-wrap gap-2">
+      <div className={s.actions}>
         <Button type="button" onClick={handleCopy}>
           Copy prompt
         </Button>

@@ -8,39 +8,27 @@ import { drawers } from "@/data/drawers";
 import { site, nowStatus } from "@/data/site";
 import { skillGroups } from "@/data/skills";
 import { socials } from "@/data/socials";
+import { deskPageStyles as s } from "./page.styles";
 
 export default function DeskPage() {
   return (
-    <div className="flex flex-col gap-12 sm:gap-14">
-      {/* Top: bio (left) + portrait (right) */}
-      <section className="grid items-start gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
-        <div className="flex flex-col gap-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
-            {site.name}
-          </p>
-
-          <h1 className="max-w-xl font-[family-name:var(--font-display)] text-4xl leading-tight tracking-tight sm:text-5xl">
+    <div className={s.root}>
+      <section className={s.hero}>
+        <div className={s.bio}>
+          <p className={s.name}>{site.name}</p>
+          <h1 className={s.title}>
             {site.roleLine}{" "}
-            <span className="text-[var(--accent)]">{site.roleHighlight}</span>
+            <span className={s.titleAccent}>{site.roleHighlight}</span>
           </h1>
-
-          <p className="max-w-md text-base leading-relaxed text-[var(--muted)] sm:text-lg">
-            {site.intro}
-          </p>
-
-          <p className="font-[family-name:var(--font-script)] text-xl text-[var(--accent)] sm:text-2xl">
-            {site.handwrittenNote}
-          </p>
-
-          <div className="flex flex-col gap-2 pt-1">
-            <p className="font-[family-name:var(--font-script)] text-[var(--muted)]">
-              Now
-            </p>
+          <p className={s.intro}>{site.intro}</p>
+          <p className={s.handwritten}>{site.handwrittenNote}</p>
+          <div className={s.nowBlock}>
+            <p className={s.nowLabel}>Now</p>
             <StatusPills items={nowStatus} />
           </div>
         </div>
 
-        <div className="flex justify-center lg:justify-end lg:pt-2">
+        <div className={s.portraitWrap}>
           <PolaroidPortrait
             src={site.portraitSrc}
             caption={site.portraitCaption}
@@ -49,52 +37,38 @@ export default function DeskPage() {
         </div>
       </section>
 
-      {/* Search */}
-      <section className="flex flex-col items-center gap-2">
-        <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--faint)]">
-          Search
-        </p>
-        <p className="mb-1 font-[family-name:var(--font-display)] text-lg">
-          Looking for something?
-        </p>
+      <section className={s.searchSection}>
+        <p className={s.searchEyebrow}>Search</p>
+        <p className={s.searchHeading}>Looking for something?</p>
         <SearchBar />
       </section>
 
-      {/* Drawers */}
-      <section className="flex flex-col gap-4">
-        <p className="font-[family-name:var(--font-script)] text-lg text-[var(--muted)]">
-          In the drawers
-        </p>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <section className={s.section}>
+        <p className={s.sectionLabel}>In the drawers</p>
+        <div className={s.drawersGrid}>
           {drawers.map((drawer) => (
             <DrawerCard key={drawer.id} drawer={drawer} />
           ))}
         </div>
       </section>
 
-      {/* Socials */}
-      <section className="flex flex-col gap-4">
-        <p className="font-[family-name:var(--font-script)] text-lg text-[var(--muted)]">
-          Where to find me
-        </p>
-        <div className="grid gap-3 sm:grid-cols-2">
+      <section className={s.section}>
+        <p className={s.sectionLabel}>Where to find me</p>
+        <div className={s.socialsGrid}>
           {socials.map((social) => (
             <SocialTag key={social.id} social={social} />
           ))}
         </div>
       </section>
 
-      {/* Skills */}
-      <section className="flex flex-col gap-6">
-        <div className="flex flex-col gap-1">
-          <p className="font-[family-name:var(--font-script)] text-lg text-[var(--muted)]">
-            Skill set
-          </p>
-          <p className="text-sm text-[var(--faint)]">
+      <section className={s.skillsSection}>
+        <div className={s.skillsIntro}>
+          <p className={s.sectionLabel}>Skill set</p>
+          <p className={s.skillsHint}>
             Tools I use day to day — grouped by depth, not buzzwords.
           </p>
         </div>
-        <div className="flex flex-col gap-8 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5 sm:p-6">
+        <div className={s.skillsPanel}>
           {skillGroups.map((group) => (
             <SkillCard key={group.id} group={group} />
           ))}

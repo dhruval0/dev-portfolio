@@ -3,10 +3,11 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { SearchBar } from "@/components/layout/SearchBar";
 import { RitualCard } from "@/components/ritual/RitualCard";
 import { ritualEntries } from "@/data/ritual";
+import { ritualPageStyles as s } from "./page.styles";
 
 export default function RitualPage() {
   return (
-    <div className="flex flex-col gap-8">
+    <div className={s.root}>
       <BackToDesk />
       <PageHeader
         title="The Ritual"
@@ -14,7 +15,7 @@ export default function RitualPage() {
       />
       <SearchBar placeholder="Search ritual notes..." />
 
-      <div className="flex flex-col gap-3">
+      <div className={s.list}>
         {ritualEntries.map((entry) => (
           <RitualCard key={entry.id} entry={entry} />
         ))}

@@ -1,31 +1,28 @@
 import { Badge } from "@/components/ui/Badge";
 import type { BlogItem } from "@/types";
+import { blogCardStyles as s } from "./BlogCard.styles";
 
 type BlogCardProps = {
   blog: BlogItem;
 };
 
 export function BlogCard({ blog }: BlogCardProps) {
+  const external = blog.href.startsWith("http");
+
   return (
     <a
       href={blog.href}
-      target={blog.href.startsWith("http") ? "_blank" : undefined}
-      rel={blog.href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="block rounded-lg border border-[var(--border)] bg-[var(--card)] p-5 transition-colors hover:border-[var(--accent-soft)]"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={s.link}
     >
-      <div className="flex flex-wrap items-center gap-2">
+      <div className={s.meta}>
         <Badge tone="accent">{blog.platform}</Badge>
-        <span className="text-xs text-[var(--muted)]">{blog.date}</span>
+        <span className={s.date}>{blog.date}</span>
       </div>
-      <h3 className="mt-3 font-[family-name:var(--font-display)] text-xl">
-        {blog.title}
-      </h3>
-      <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
-        {blog.excerpt}
-      </p>
-      <span className="mt-4 inline-block text-sm text-[var(--link)]">
-        Read on {blog.platform} →
-      </span>
+      <h3 className={s.title}>{blog.title}</h3>
+      <p className={s.excerpt}>{blog.excerpt}</p>
+      <span className={s.cta}>Read on {blog.platform} →</span>
     </a>
   );
 }

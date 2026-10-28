@@ -1,20 +1,15 @@
 import Link from "next/link";
 import { navLinks } from "@/data/nav";
+import { siteFooterStyles as s } from "./SiteFooter.styles";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-16 border-t border-[var(--border)]">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <p className="font-[family-name:var(--font-script)] text-lg text-[var(--muted)]">
-          Thanks for stopping by the desk.
-        </p>
-        <nav className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-[var(--foreground)]">
+    <footer className={s.root}>
+      <div className={s.inner}>
+        <p className={s.thanks}>Thanks for stopping by the desk.</p>
+        <nav className={s.nav}>
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="transition-colors hover:text-[var(--accent)]"
-            >
+            <Link key={link.href} href={link.href} className={s.link}>
               {link.label}
             </Link>
           ))}

@@ -5,11 +5,12 @@ Inspired by a simple “desk” UI, built with **your** copy, data, and structur
 | Lesson | Topic | Status |
 |--------|--------|--------|
 | 1 | Project map + JS / TS / React / Next | Done |
-| 2 | Data vs UI folders + theme tokens | **You are here** |
-| 3 | React components & props | Next |
-| 4 | Routing & layouts | Later |
-| 5 | Client state (`useState`) & filters | Later |
-| 6 | Build a feature yourself | Later |
+| 2 | Data vs UI folders + theme tokens | Done |
+| 3 | Segregate logic / styles / JSX | **You are here** |
+| 4 | React components & props | Next |
+| 5 | Routing & layouts | Later |
+| 6 | Client state (`useState`) & filters | Later |
+| 7 | Build a feature yourself | Later |
 
 Site: http://localhost:3000
 
@@ -65,3 +66,31 @@ Example: desk home is 1 column on phone, 2 columns on `lg:`.
 4. Visit `/vault` and find your new card.
 
 When done, say **“Lesson 3”** or ask a question about any file.
+
+---
+
+## Lesson 3 — Segregate logic, styles, JSX
+
+Every feature follows three files (when needed):
+
+| File | Holds |
+|------|--------|
+| `Component.tsx` | HTML / JSX only (what you see) |
+| `Component.styles.ts` | Tailwind class strings |
+| `useComponent.ts` | Logic (state, handlers, filters) |
+
+Example — Prompt card:
+
+```
+components/prompts/
+  PromptCard.tsx        → markup
+  PromptCard.styles.ts  → classes
+  usePromptCard.ts      → copy-to-clipboard logic
+```
+
+Helpers:
+
+- `src/lib/cn.ts` — join class names
+- `src/lib/color.ts` — shared color helpers
+
+**Practice:** Open `SkillCard.styles.ts`, change `pill` padding, save, refresh. No logic touched.

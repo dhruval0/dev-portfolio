@@ -1,27 +1,25 @@
 import type { SocialLink } from "@/types";
+import { socialTagStyles as s } from "./SocialTag.styles";
 
 type SocialTagProps = {
   social: SocialLink;
 };
 
 export function SocialTag({ social }: SocialTagProps) {
+  const external = social.href.startsWith("http");
+
   return (
     <a
       href={social.href}
-      target={social.href.startsWith("http") ? "_blank" : undefined}
-      rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
-      className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] p-4 transition-colors hover:border-[var(--accent-soft)]"
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className={s.link}
     >
-      <span
-        aria-hidden
-        className="mt-1 h-3 w-3 shrink-0 rounded-full border-2 border-[var(--border)]"
-      />
-      <div className="min-w-0">
-        <p className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent)]">
-          {social.platform}
-        </p>
-        <p className="truncate font-medium">{social.handle}</p>
-        <p className="mt-1 text-sm text-[var(--muted)]">{social.description}</p>
+      <span aria-hidden className={s.hole} />
+      <div className={s.body}>
+        <p className={s.platform}>{social.platform}</p>
+        <p className={s.handle}>{social.handle}</p>
+        <p className={s.description}>{social.description}</p>
       </div>
     </a>
   );

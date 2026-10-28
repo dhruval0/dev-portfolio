@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Source_Sans_3, Caveat, Geist_Mono } from "next/font/google";
+import {
+  Bricolage_Grotesque,
+  Source_Sans_3,
+  Caveat,
+  Geist_Mono,
+} from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { SearchProvider } from "@/components/search/SearchProvider";
+import { cn } from "@/lib/cn";
+import { layoutStyles as s } from "./layout.styles";
 import "./globals.css";
 
 const display = Bricolage_Grotesque({
@@ -35,14 +42,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${body.variable} ${script.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(
+        display.variable,
+        body.variable,
+        script.variable,
+        geistMono.variable,
+        s.html,
+      )}
     >
-      <body className="desk-glow flex min-h-full flex-col">
+      <body className={s.body}>
         <SearchProvider>
           <ThemeToggle />
-          <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 pb-8 pt-16 sm:px-6">
-            {children}
-          </div>
+          <div className={s.main}>{children}</div>
           <SiteFooter />
         </SearchProvider>
       </body>
