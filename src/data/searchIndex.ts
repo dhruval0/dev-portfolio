@@ -13,6 +13,8 @@ export type SearchHit = {
   snippet: string;
   tag: string;
   href: string;
+  /** Opens paper modal when set */
+  sourceId?: string;
 };
 
 /** Flat index — Command Search filters this list */
@@ -24,6 +26,7 @@ export const searchIndex: SearchHit[] = [
     snippet: item.description,
     tag: "note",
     href: "/vault",
+    sourceId: item.id,
   })),
   ...prompts.map((item) => ({
     id: `prompt-${item.id}`,
@@ -32,6 +35,7 @@ export const searchIndex: SearchHit[] = [
     snippet: item.preview,
     tag: "prompt",
     href: "/prompts",
+    sourceId: item.id,
   })),
   ...ritualEntries.map((item) => ({
     id: `ritual-${item.id}`,
@@ -40,6 +44,7 @@ export const searchIndex: SearchHit[] = [
     snippet: item.summary,
     tag: "ritual",
     href: "/ritual",
+    sourceId: item.id,
   })),
   ...projects.map((item) => ({
     id: `project-${item.id}`,
@@ -64,13 +69,22 @@ export function filterSearchIndex(query: string): SearchHit[] {
   if (!q) return [];
 
   return searchIndex.filter((hit) => {
-    const haystack = `${hit.title} ${hit.snippet} ${hit.group} ${hit.tag}`.toLowerCase();
+    const haystack =
+      `${hit.title} ${hit.snippet} ${hit.group} ${hit.tag}`.toLowerCase();
     return haystack.includes(q);
   });
 }
 
-export function groupHits(hits: SearchHit[]): { group: SearchGroup; items: SearchHit[] }[] {
-  const order: SearchGroup[] = ["Vault", "Prompts", "Ritual", "Projects", "Blogs"];
+export function groupHits(
+  hits: SearchHit[],
+): { group: SearchGroup; items: SearchHit[] }[] {
+  const order: SearchGroup[] = [
+    "Vault",
+    "Prompts",
+    "Ritual",
+    "Projects",
+    "Blogs",
+  ];
   return order
     .map((group) => ({
       group,

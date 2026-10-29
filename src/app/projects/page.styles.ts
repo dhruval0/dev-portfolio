@@ -1,11 +1,17 @@
+import { hover } from "@/styles/hover";
+
 export const projectsPageStyles = {
   root: "flex flex-col gap-8",
-  tray: "rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-6",
+  tray: [
+    "rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4 sm:p-6",
+    hover.soft,
+  ].join(" "),
   trayLabel:
-    "mb-4 text-center font-[family-name:var(--font-script)] text-[var(--muted)]",
-  heading: "font-[family-name:var(--font-display)] text-xl",
+    "mb-4 text-center font-[family-name:var(--font-script)] text-lg text-[var(--accent)]",
+  heading:
+    "font-[family-name:var(--font-display)] text-xl text-[var(--foreground)]",
   sub: "mt-1 text-sm text-[var(--muted)]",
   grid: "mt-6 grid gap-4 sm:grid-cols-2",
   count:
-    "mt-8 text-center font-[family-name:var(--font-script)] text-[var(--muted)]",
+    "mt-8 text-center font-[family-name:var(--font-script)] text-lg text-[var(--accent)]",
 } as const;

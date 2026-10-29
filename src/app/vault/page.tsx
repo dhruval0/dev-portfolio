@@ -1,9 +1,9 @@
 "use client";
 
-import { BackToDesk } from "@/components/layout/BackToDesk";
 import { FilterPills } from "@/components/layout/FilterPills";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SearchBar } from "@/components/layout/SearchBar";
+import { SubpageNav } from "@/components/layout/SubpageNav";
 import { VaultCard } from "@/components/vault/VaultCard";
 import { vaultFilters } from "@/data/vault";
 import { vaultPageStyles as s } from "./page.styles";
@@ -14,7 +14,7 @@ export default function VaultPage() {
 
   return (
     <div className={s.root}>
-      <BackToDesk />
+      <SubpageNav />
       <PageHeader
         title="The Vault"
         description="Learning notes — DSA, system design, behavioral prep, and lessons from experience. Cards open right here on the desk."

@@ -27,14 +27,34 @@ export type SocialLink = {
 
 export type VaultCategory = "notes" | "tools" | "reads" | "experience";
 
+/** Building blocks inside a paper note modal */
+export type NoteBlock =
+  | { type: "heading"; text: string }
+  | { type: "paragraph"; text: string }
+  | { type: "callout"; text: string }
+  | { type: "flow"; text: string }
+  | { type: "pin"; text: string }
+  | { type: "list"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "divider" };
+
+export type PaperDocument = {
+  id: string;
+  /** e.g. "from the vault" */
+  eyebrow: string;
+  topic: string;
+  title: string;
+  blocks: NoteBlock[];
+};
+
 export type VaultItem = {
   id: string;
   title: string;
   description: string;
   category: VaultCategory;
   openedCount: number;
-  /** Optional longer note body for a future modal lesson */
-  bodyPreview?: string;
+  /** Shown in the paper note modal */
+  note: PaperDocument;
 };
 
 export type ProjectItem = {
@@ -53,7 +73,6 @@ export type PromptItem = {
   preview: string;
   fullPrompt: string;
   tags: string[];
-  copyCount: number;
 };
 
 export type RitualItem = {

@@ -13,7 +13,7 @@ export const commandSearchStyles = {
     "flex h-36 items-center justify-center px-4 text-center text-sm text-[var(--faint)]",
   section: "mb-2",
   groupLabel:
-    "px-2 py-1.5 font-[family-name:var(--font-script)] text-sm text-[var(--accent-soft)]",
+    "px-2 py-1.5 font-[family-name:var(--font-script)] text-sm text-[var(--accent)] sm:text-base",
   hit: "flex w-full items-start gap-3 rounded-lg px-3 py-2.5 text-left transition-colors",
   hitActive: "bg-[var(--elevated)]",
   hitIdle: "hover:bg-[var(--card)]",

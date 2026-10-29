@@ -25,10 +25,10 @@ export const socials: SocialLink[] = [
     href: "/blogs",
   },
   {
-    id: "medium",
-    platform: "Medium",
+    id: "instagram",
+    platform: "Instagram",
     handle: "Coming soon",
-    description: "Articles I publish while learning in public.",
-    href: "/blogs",
+    description: "Building in public — short clips and desk moments.",
+    href: "https://instagram.com",
   },
 ];

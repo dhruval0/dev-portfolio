@@ -1,6 +1,6 @@
-import { BackToDesk } from "@/components/layout/BackToDesk";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SearchBar } from "@/components/layout/SearchBar";
+import { SubpageNav } from "@/components/layout/SubpageNav";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { projects } from "@/data/projects";
 import { projectsPageStyles as s } from "./page.styles";
@@ -8,7 +8,7 @@ import { projectsPageStyles as s } from "./page.styles";
 export default function ProjectsPage() {
   return (
     <div className={s.root}>
-      <BackToDesk />
+      <SubpageNav />
       <PageHeader
         title="Projects"
         description="Things I've shipped — or am still shipping — while learning. Some for practice, some that might help others too."

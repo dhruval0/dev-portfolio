@@ -2,29 +2,33 @@
 
 /*
   ============================================
-  THEME — change colors in ONE place below.
-  Edit these variables to recolor the whole site.
+  THEME — cinematic teal + bronze grading.
+  Change these variables to recolor the whole site.
   ============================================
 */
 :root {
-  /* Surfaces */
-  --desk-bg: #1a1612;
-  --desk-surface: #2a241c;
-  --desk-card: #332c22;
-  --desk-elevated: #3d3428;
+  /* Surfaces — cool midnight / teal (shadows) */
+  --desk-bg: #041820;
+  --desk-surface: #0a2430;
+  --desk-card: #123040;
+  --desk-elevated: #1a3d4e;
 
-  /* Text */
-  --desk-text: #f2ebe3;
-  --desk-muted: #a89f93;
-  --desk-faint: #6e675c;
+  /* Text — warm parchment against cool bg */
+  --desk-text: #f3ebe0;
+  --desk-muted: #9eb0b8;
+  --desk-faint: #6a7f88;
 
-  /* Accents (change these first!) */
-  --desk-accent: #e8a082;
-  --desk-accent-soft: #c4a882;
-  --desk-link: #8fb4c9;
-  --desk-success: #96a682;
-  --desk-tape: #c4b59a;
-  --desk-border: #4a4338;
+  /* Accents — bronze / gold highlights (subjects) */
+  --desk-accent: #c5a059;
+  --desk-accent-soft: #a8864a;
+  --desk-link: #7ec8d4;
+  --desk-success: #5a9e8b;
+  --desk-tape: #b89a5c;
+  --desk-border: #2a4a58;
+
+  /* Mist / glow helpers */
+  --desk-mist: #0d4a5c;
+  --desk-mist-bright: #1a6b7c;
 
   /* Semantic aliases used in components */
   --background: var(--desk-bg);
@@ -42,21 +46,23 @@
   --faint: var(--desk-faint);
 }
 
-/* Optional light theme (toggle adds class="light" on <html>) */
+/* Light theme — soft parchment + teal ink */
 html.light {
-  --desk-bg: #f4efe6;
-  --desk-surface: #ebe4d8;
+  --desk-bg: #eef4f6;
+  --desk-surface: #e2ecef;
   --desk-card: #ffffff;
-  --desk-elevated: #faf7f2;
-  --desk-text: #1a1612;
-  --desk-muted: #5c564c;
-  --desk-faint: #8a8378;
-  --desk-accent: #c45e3a;
-  --desk-accent-soft: #8a6f4e;
-  --desk-link: #2f6f8f;
-  --desk-success: #5a7a4a;
-  --desk-tape: #d4c4a8;
-  --desk-border: #d4cbbd;
+  --desk-elevated: #f7fafb;
+  --desk-text: #0c1e26;
+  --desk-muted: #4a6068;
+  --desk-faint: #7a9098;
+  --desk-accent: #9a7428;
+  --desk-accent-soft: #7a5c20;
+  --desk-link: #1a6b7c;
+  --desk-success: #3d7a68;
+  --desk-tape: #c4a86a;
+  --desk-border: #c5d4da;
+  --desk-mist: #b8d4dc;
+  --desk-mist-bright: #9ec4d0;
 }
 
 @theme inline {
@@ -72,9 +78,32 @@ body {
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
-/* Soft desk glow */
+/*
+  Atmospheric desk — teal mist + vignette
+  (color grading like cool shadows / warm accents)
+*/
 .desk-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 10% 0%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%),
+    radial-gradient(
+      ellipse 70% 55% at 35% 40%,
+      color-mix(in srgb, var(--desk-mist-bright) 28%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 90% 70% at 70% 20%,
+      color-mix(in srgb, var(--desk-mist) 22%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 50% 40% at 15% 0%,
+      color-mix(in srgb, var(--accent) 8%, transparent),
+      transparent 50%
+    ),
+    radial-gradient(
+      ellipse 120% 100% at 50% 50%,
+      transparent 40%,
+      color-mix(in srgb, #000 55%, transparent) 100%
+    ),
     var(--background);
+  background-attachment: fixed;
 }

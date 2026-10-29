@@ -7,6 +7,7 @@ import {
 } from "next/font/google";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { NoteModalProvider } from "@/components/note/NoteModalProvider";
 import { SearchProvider } from "@/components/search/SearchProvider";
 import { cn } from "@/lib/cn";
 import { layoutStyles as s } from "./layout.styles";
@@ -51,11 +52,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       )}
     >
       <body className={s.body}>
-        <SearchProvider>
-          <ThemeToggle />
-          <div className={s.main}>{children}</div>
-          <SiteFooter />
-        </SearchProvider>
+        <NoteModalProvider>
+          <SearchProvider>
+            <ThemeToggle />
+            <div className={s.shell}>
+              <div className={s.main}>{children}</div>
+            </div>
+            <SiteFooter />
+          </SearchProvider>
+        </NoteModalProvider>
       </body>
     </html>
   );
