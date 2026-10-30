@@ -27,12 +27,20 @@ export type SocialLink = {
 
 export type VaultCategory = "notes" | "tools" | "reads" | "experience";
 
+export type CodeLanguage = "python" | "javascript" | "go" | "java";
+
+export type CodeSnippet = {
+  language: CodeLanguage;
+  code: string;
+};
+
 /** Building blocks inside a paper note modal */
 export type NoteBlock =
   | { type: "heading"; text: string }
   | { type: "paragraph"; text: string }
   | { type: "callout"; text: string }
   | { type: "flow"; text: string }
+  | { type: "codeCell"; snippets: CodeSnippet[] }
   | { type: "pin"; text: string }
   | { type: "list"; items: string[] }
   | { type: "table"; headers: string[]; rows: string[][] }
@@ -82,6 +90,26 @@ export type RitualItem = {
   summary: string;
 };
 
+/** Live tech-stack release / update shown on Ritual */
+export type TechUpdate = {
+  id: string;
+  stack: string;
+  stackId: string;
+  version: string;
+  title: string;
+  summary: string;
+  detail: string;
+  publishedAt: string;
+  href: string;
+  isPrerelease: boolean;
+};
+
+export type TechStackSource = {
+  id: string;
+  name: string;
+  repo: string;
+};
+
 export type BlogItem = {
   id: string;
   title: string;
@@ -89,10 +117,14 @@ export type BlogItem = {
   excerpt: string;
   href: string;
   date: string;
+  /** Cover image URL (e.g. Medium CDN) */
+  image: string;
 };
 
 export type SiteInfo = {
   name: string;
+  /** Small accent line above the hero title (not the name — name lives under the polaroid) */
+  eyebrow: string;
   roleLine: string;
   roleHighlight: string;
   intro: string;

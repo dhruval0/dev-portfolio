@@ -25,7 +25,9 @@ export function VaultCard({ item }: VaultCardProps) {
         <button type="button" onClick={handleOpen} className={s.open}>
           Open the note →
         </button>
-        <span className={s.opened}>opened {item.openedCount}x</span>
+        {item.openedCount > 0 ? (
+          <span className={s.opened}>opened {item.openedCount}x</span>
+        ) : null}
       </div>
     </article>
   );

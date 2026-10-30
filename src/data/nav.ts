@@ -30,7 +30,7 @@ export const navLinks: DeskNavLink[] = [
     label: "Ritual",
     href: "/ritual",
     mark: "◎",
-    tip: "Weekly writes, brick by brick",
+    tip: "Live stack releases & version notes",
   },
   {
     label: "Projects",
@@ -42,6 +42,6 @@ export const navLinks: DeskNavLink[] = [
     label: "Blogs",
     href: "/blogs",
     mark: "✎",
-    tip: "Longer pieces on Substack & Medium",
+    tip: "Medium posts from the desk",
   },
 ];

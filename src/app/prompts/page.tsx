@@ -11,7 +11,7 @@ export default function PromptsPage() {
       <SubpageNav />
       <PageHeader
         title="Prompts"
-        description="Copy-paste AI prompts organized by how I actually use them while learning and building."
+        description="Desk prompts from The Vault — learning, system design drills, debugging, code review, and behavioral STAR."
       />
       <SearchBar placeholder="Search prompts..." />
 

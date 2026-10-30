@@ -2,7 +2,8 @@ export const deskPageStyles = {
   root: "flex flex-col gap-12 sm:gap-14",
   hero: "grid items-start gap-8 lg:grid-cols-[1fr_auto] lg:gap-12",
   bio: "flex flex-col gap-5",
-  name: "text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]",
+  eyebrow:
+    "text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent)]",
   title:
     "max-w-xl font-[family-name:var(--font-display)] text-4xl leading-tight tracking-tight sm:text-5xl",
   titleAccent: "text-[var(--accent)]",
@@ -24,7 +25,7 @@ export const deskPageStyles = {
   sectionLabel:
     "font-[family-name:var(--font-script)] text-xl text-[var(--accent)]",
 
-  drawersGrid: "grid gap-3 sm:grid-cols-2 lg:grid-cols-4",
+  drawersGrid: "grid gap-3 sm:grid-cols-2 lg:grid-cols-5",
   socialsGrid: "grid gap-3 sm:grid-cols-2",
 
   skillsSection: "flex flex-col gap-6",

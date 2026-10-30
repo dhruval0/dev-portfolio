@@ -18,7 +18,8 @@ export const drawers: DrawerItem[] = [
   {
     id: "ritual",
     title: "Ritual",
-    description: "Weekly notes — what I built, broke, and figured out.",
+    description:
+      "Live stack releases — Python, LLM, FastAPI, Docker, and more.",
     href: "/ritual",
   },
   {
@@ -26,5 +27,11 @@ export const drawers: DrawerItem[] = [
     title: "Projects",
     description: "Things I've shipped (or am still shipping) in public.",
     href: "/projects",
+  },
+  {
+    id: "blogs",
+    title: "Blogs",
+    description: "Medium posts — Elasticsearch, Docker, Git, Nginx, and more.",
+    href: "/blogs",
   },
 ];

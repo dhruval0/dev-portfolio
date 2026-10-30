@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useNoteModal } from "@/components/note/useNoteModal";
 import { useSearch } from "@/components/search/SearchProvider";
 import { prompts } from "@/data/prompts";
-import { ritualEntries } from "@/data/ritual";
 import {
   filterSearchIndex,
   groupHits,
@@ -13,7 +12,6 @@ import {
 } from "@/data/searchIndex";
 import {
   promptToPaper,
-  ritualToPaper,
   vaultToPaper,
 } from "@/data/toPaperDocument";
 import { getVaultItemById } from "@/data/vault";
@@ -52,15 +50,7 @@ export function useCommandSearch() {
       }
     }
 
-    if (hit.group === "Ritual" && hit.sourceId) {
-      const entry = ritualEntries.find((r) => r.id === hit.sourceId);
-      if (entry) {
-        openDocument(ritualToPaper(entry));
-        return;
-      }
-    }
-
-    if (hit.href.startsWith("http")) {
+    if (hit.href.startsWith("http") || hit.href.endsWith(".pdf")) {
       window.open(hit.href, "_blank", "noopener,noreferrer");
       return;
     }

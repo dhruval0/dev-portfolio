@@ -1,4 +1,7 @@
+"use client";
+
 import type { NoteBlock } from "@/types";
+import { LanguageCodeCell } from "./LanguageCodeCell";
 import { noteModalStyles as s } from "./NoteModal.styles";
 
 type NoteBlocksProps = {
@@ -33,10 +36,12 @@ export function NoteBlocks({ blocks }: NoteBlocksProps) {
             );
           case "flow":
             return (
-              <p key={key} className={s.flow}>
-                {block.text}
-              </p>
+              <pre key={key} className={s.flow}>
+                <code>{block.text}</code>
+              </pre>
             );
+          case "codeCell":
+            return <LanguageCodeCell key={key} snippets={block.snippets} />;
           case "pin":
             return (
               <p key={key} className={s.pin}>

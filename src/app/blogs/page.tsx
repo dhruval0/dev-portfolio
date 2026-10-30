@@ -10,7 +10,7 @@ export default function BlogsPage() {
       <SubpageNav />
       <PageHeader
         title="Blogs"
-        description="Longer pieces I publish on Substack and Medium — linked here so the desk stays the home base."
+        description="Writing on Medium — Elasticsearch, Docker, Git, Nginx, and more. Open any card to read the full post."
       />
 
       <div className={s.grid}>

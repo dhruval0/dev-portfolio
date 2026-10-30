@@ -1,0 +1,31 @@
+import type { PaperDocument } from "@/types";
+
+export const databases_sql_joins_1Note: PaperDocument = {
+  id: "databases-sql-joins-1",
+  eyebrow: "from the vault",
+  topic: "Databases",
+  title: "Databases & SQL \u2014 Overview",
+  blocks: [
+    { type: "heading", text: "Overview" },
+    { type: "callout", text: "Definition: A database is a structured collection of data with defined access patterns. Choosing the right database is one of the most impactful architectural decisions because migrations are extremely costly." },
+    { type: "paragraph", text: "The decision framework (3 questions): 1. Do I need JOINs across entities? YES → SQL (PostgreSQL) 2. Do I need ACID transactions? YES → SQL (PostgreSQL) 3. Is write throughput > 50K/sec? YES → Consider NoSQL (Cassandra) or sharded SQL" },
+    { type: "paragraph", text: "Most systems: PostgreSQL for core data + Redis for cache + Elasticsearch for search." },
+    { type: "heading", text: "Database Types" },
+    { type: "heading", text: "Relational (SQL): PostgreSQL, MySQL" },
+    { type: "paragraph", text: "Best for: Structured data with relationships, ACID transactions, complex queries with JOINs, financial data, inventory, user management." },
+    { type: "paragraph", text: "Avoid for: Massive write throughput (> 50K writes/sec), unstructured/nested data, rapidly changing schemas, time-series at IoT scale." },
+    { type: "flow", text: "Characteristics: - Schema-on-write: define structure before inserting data - ACID guarantees:\natomicity, consistency, isolation, durability - Rich query language (SQL): JOINs, aggregations,\nwindow functions, CTEs - Strong ecosystem: PostGIS for geo, pg_trgm for fuzzy search, JSONB\nfor semi-structured" },
+    { type: "flow", text: "import psycopg2" },
+    { type: "flow", text: "conn = psycopg2.connect(\"dbname=orders host=db.internal\")\ncur = conn.cursor()" },
+    { type: "flow", text: "        # ACID transaction: both succeed or both fail\n        try:\n            cur.execute(\"BEGIN\")\n            cur.execute(\"UPDATE wallets SET balance = balance - 500 WHERE user_id =\n'buyer'\")" },
+    { type: "flow", text: "                cur.execute(\"UPDATE wallets SET balance = balance + 500 WHERE user_id =\n'seller'\")\n            cur.execute(\"INSERT INTO transactions (from_id, to_id, amount) VALUES\n('buyer', 'seller', 500)\")\n            conn.commit() # atomic: all 3 or none\n        except Exception:\n            conn.rollback() # undo everything" },
+    { type: "heading", text: "Document (NoSQL): MongoDB, CouchDB" },
+    { type: "paragraph", text: "Best for: Flexible schema, nested/hierarchical data, rapid iteration, content management, user profiles with varying fields." },
+    { type: "paragraph", text: "Avoid for: Complex joins across collections, strict consistency, financial transactions." },
+    { type: "flow", text: "from pymongo import MongoClient" },
+    { type: "paragraph", text: "db = MongoClient()[\"myapp\"]" },
+    { type: "flow", text: "# Flexible: each document can have different fields\ndb.users.insert_one({\n    \"name\": \"Dhruval\",\n    \"skills\": [\"Python\", \"Go\", \"Kafka\"], # array field\n    \"address\": {\"city\": \"Bengaluru\", \"state\": \"KA\"}, # nested\n    \"experience\": [\n        {\"company\": \"Jio\", \"role\": \"SDE-3\", \"years\": 2},\n        {\"company\": \"Lolly\", \"role\": \"Lead\", \"years\": 1}\n    ]\n})" },
+    { type: "flow", text: "# Aggregation pipeline ($lookup = MongoDB's JOIN)\npipeline = [\n    {\"$match\": {\"status\": \"active\"}},\n    {\"$lookup\": {\n        \"from\": \"orders\",\n        \"localField\": \"_id\",\n        \"foreignField\": \"user_id\",\n        \"as\": \"user_orders\"\n    }},\n    {\"$project\": {\"name\": 1, \"order_count\": {\"$size\": \"$user_orders\"}}}" },
+    { type: "flow", text: "]\nresults = list(db.users.aggregate(pipeline))" },
+  ],
+};

@@ -1,7 +1,6 @@
 import { blogs } from "@/data/blogs";
 import { projects } from "@/data/projects";
 import { prompts } from "@/data/prompts";
-import { ritualEntries } from "@/data/ritual";
 import { vaultItems } from "@/data/vault";
 
 export type SearchGroup = "Vault" | "Prompts" | "Ritual" | "Projects" | "Blogs";
@@ -37,15 +36,15 @@ export const searchIndex: SearchHit[] = [
     href: "/prompts",
     sourceId: item.id,
   })),
-  ...ritualEntries.map((item) => ({
-    id: `ritual-${item.id}`,
+  {
+    id: "ritual-feed",
     group: "Ritual" as const,
-    title: item.title,
-    snippet: item.summary,
-    tag: "ritual",
+    title: "Tech stack releases",
+    snippet:
+      "Live updates for Python, LLM, FastAPI, Flask, Django, Go, Elasticsearch, SQL/NoSQL, Grafana, Docker.",
+    tag: "releases",
     href: "/ritual",
-    sourceId: item.id,
-  })),
+  },
   ...projects.map((item) => ({
     id: `project-${item.id}`,
     group: "Projects" as const,

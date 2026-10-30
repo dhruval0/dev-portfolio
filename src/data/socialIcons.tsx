@@ -1,6 +1,6 @@
 import type { IconType } from "react-icons";
 import { FaLinkedinIn } from "react-icons/fa";
-import { SiGithub, SiInstagram, SiMedium, SiSubstack } from "react-icons/si";
+import { SiGithub, SiLeetcode, SiMedium, SiSubstack } from "react-icons/si";
 import { HiOutlineSparkles } from "react-icons/hi2";
 
 export type SocialIconConfig = {
@@ -13,8 +13,8 @@ export const socialIcons: Record<string, SocialIconConfig> = {
   github: { Icon: SiGithub, color: "#FFFFFF" },
   linkedin: { Icon: FaLinkedinIn, color: "#0A66C2" },
   substack: { Icon: SiSubstack, color: "#FF6719" },
-  instagram: { Icon: SiInstagram, color: "#E4405F" },
   medium: { Icon: SiMedium, color: "#FFFFFF" },
+  leetcode: { Icon: SiLeetcode, color: "#FFA116" },
 };
 
 const fallback: SocialIconConfig = {

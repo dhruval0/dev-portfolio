@@ -1,0 +1,32 @@
+import type { PaperDocument } from "@/types";
+
+export const cap_theorem_5Note: PaperDocument = {
+  id: "cap-theorem-5",
+  eyebrow: "from the vault",
+  topic: "System Design \u00b7 CAP",
+  title: "CAP Theorem \u2014 AP Systems",
+  blocks: [
+    { type: "heading", text: "AP Systems" },
+    { type: "heading", text: "System                                               Why AP" },
+    { type: "flow", text: "Cassandra                                            High availability for massive scale applications,\n                                                     tunable consistency" },
+    { type: "paragraph", text: "DynamoDB Amazon’s highly available key-value store" },
+    { type: "paragraph", text: "Riak Distributed database designed for high availability" },
+    { type: "paragraph", text: "DNS Global naming system favoring availability" },
+    { type: "flow", text: "CDNs                                                 Content delivery prioritizing availability over\n                                                     consistency" },
+    { type: "heading", text: "Tunable Systems (CA-configurable)" },
+    { type: "paragraph", text: "Some systems allow you to configure the consistency-availability tradeoff per query:" },
+    { type: "flow", text: "• Cassandra: Tunable consistency levels (ONE, QUORUM, ALL)\n          ◦ ONE : fastest, read from any single replica (AP behavior)\n          ◦ QUORUM : majority must agree (balanced)\n          ◦ ALL : all replicas must agree (CP behavior)" },
+    { type: "flow", text: "• DynamoDB: Eventual vs strongly consistent reads\n• MongoDB: Read/write concerns configurable per operation" },
+    { type: "heading", text: "PACELC Extension" },
+    { type: "paragraph", text: "PACELC extends CAP to address the tradeoff even when there’s no partition." },
+    { type: "paragraph", text: "Partitioned → choose A or C. Else → choose Latency or Consistency." },
+    { type: "paragraph", text: "System During Partition (PAC) Else (ELC)" },
+    { type: "paragraph", text: "Cassandra AP (availability) EL (favors latency)" },
+    { type: "paragraph", text: "DynamoDB AP (availability) EL (favors latency)" },
+    { type: "paragraph", text: "MongoDB CP (consistency) EC (favors consistency)" },
+    { type: "paragraph", text: "PostgreSQL CP (consistency) EC (favors consistency)" },
+    { type: "paragraph", text: "Cosmos DB Configurable Configurable" },
+    { type: "paragraph", text: "PNUTS (Yahoo) AP (availability) EL (favors latency)" },
+    { type: "flow", text: "Most systems face the ELC tradeoff daily, not the PAC tradeoff. Network partitions are rare\nevents. The latency vs consistency decision affects every single request." },
+  ],
+};

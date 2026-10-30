@@ -15,7 +15,7 @@ export default function DeskPage() {
     <div className={s.root}>
       <section className={s.hero}>
         <div className={s.bio}>
-          <p className={s.name}>{site.name}</p>
+          <p className={s.eyebrow}>{site.eyebrow}</p>
           <h1 className={s.title}>
             {site.roleLine}{" "}
             <span className={s.titleAccent}>{site.roleHighlight}</span>

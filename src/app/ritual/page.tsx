@@ -1,25 +1,20 @@
 import { PageHeader } from "@/components/layout/PageHeader";
-import { SearchBar } from "@/components/layout/SearchBar";
 import { SubpageNav } from "@/components/layout/SubpageNav";
-import { RitualCard } from "@/components/ritual/RitualCard";
-import { ritualEntries } from "@/data/ritual";
+import { TechUpdateFeed } from "@/components/ritual/TechUpdateFeed";
+import { fetchTechUpdates } from "@/lib/fetchTechUpdates";
 import { ritualPageStyles as s } from "./page.styles";
 
-export default function RitualPage() {
+export default async function RitualPage() {
+  const updates = await fetchTechUpdates();
+
   return (
     <div className={s.root}>
       <SubpageNav />
       <PageHeader
         title="The Ritual"
-        description="Weekly notes — what I'm building, thinking, and learning in public. Tap an entry to unfold it."
+        description="Live releases for Python, LLM, FastAPI, Flask, Django, Go, Elasticsearch, NoSQL, SQL, Grafana, and Docker. Unfold a card · load more for the rest."
       />
-      <SearchBar placeholder="Search ritual notes..." />
-
-      <div className={s.list}>
-        {ritualEntries.map((entry) => (
-          <RitualCard key={entry.id} entry={entry} />
-        ))}
-      </div>
+      <TechUpdateFeed updates={updates} />
     </div>
   );
 }
