@@ -34,9 +34,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dhruval — Learning Desk",
+  title: {
+    default: "Dhruval · The Desk",
+    template: "%s · Dhruval",
+  },
   description:
-    "A learning desk for JavaScript, TypeScript, React, and Next.js — vault, projects, prompts, ritual, and blogs.",
+    "Architect · Builder · Coder — an open notebook for systems, products, DSA, and shipping in public.",
+  applicationName: "Dhruval · The Desk",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

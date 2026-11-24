@@ -6,9 +6,9 @@ export const socials: SocialLink[] = [
   {
     id: "github",
     platform: "GitHub",
-    handle: "the shipyard",
+    handle: "dhruval0",
     description: "Code, experiments, and open learning repos.",
-    href: "https://github.com",
+    href: "https://github.com/dhruval0",
   },
   {
     id: "linkedin",

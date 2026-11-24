@@ -7,7 +7,7 @@ import type { SiteInfo, StatusItem } from "@/types";
 
 export const site: SiteInfo = {
   name: "Dhruval Dhorajia",
-  eyebrow: "Architect · Builder · Writer",
+  eyebrow: "Architect · Builder · Coder",
   roleLine: "Software architect by title.",
   roleHighlight: "Building in public.",
   intro:
