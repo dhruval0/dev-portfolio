@@ -75,7 +75,8 @@ async function fetchRepoTags(
         title: `${stack} ${version}`,
         summary: fallback,
         detail: `New tag published for ${stack}. Open the repo for changelog details.`,
-        publishedAt: new Date(Date.now() - index * 86_400_000).toISOString(),
+        // Stable ordering without wall-clock time (tags lack published_at)
+        publishedAt: `1970-01-01T00:00:${String(59 - index).padStart(2, "0")}.000Z`,
         href: `https://github.com/${repo}/releases/tag/${encodeURIComponent(version)}`,
         isPrerelease: /alpha|beta|rc|canary|dev/i.test(version),
       } satisfies TechUpdate;
@@ -115,7 +116,7 @@ async function fetchRepoReleases(
           title,
           summary: summarize(release.body, fallback),
           detail: detailText(release.body),
-          publishedAt: release.published_at ?? new Date().toISOString(),
+          publishedAt: release.published_at ?? "1970-01-01T00:00:00.000Z",
           href: release.html_url,
           isPrerelease: release.prerelease,
         } satisfies TechUpdate;
@@ -139,7 +140,7 @@ const fallbackUpdates: TechUpdate[] = [
       "Couldn’t reach GitHub just now. Retry shortly for Python, FastAPI, Docker, and the rest of the desk stack.",
     detail:
       "Ritual pulls live notes for Python, LangChain, FastAPI, Flask, Django, Go, Elasticsearch, MongoDB, PostgreSQL, Grafana, and Docker-related repos.",
-    publishedAt: new Date().toISOString(),
+    publishedAt: "1970-01-01T00:00:00.000Z",
     href: "https://github.com/python/cpython/releases",
     isPrerelease: false,
   },
