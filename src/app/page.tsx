@@ -63,10 +63,7 @@ export default function DeskPage() {
 
       <section className={s.skillsSection}>
         <div className={s.skillsIntro}>
-          <p className={s.sectionLabel}>Skill set</p>
-          <p className={s.skillsHint}>
-            Tools I use day to day — grouped by depth, not buzzwords.
-          </p>
+          <p className={s.sectionLabel}>Skill set — the workshop wall</p>
         </div>
         <div className={s.skillsPanel}>
           {skillGroups.map((group) => (

@@ -29,12 +29,6 @@ export const deskPageStyles = {
   socialsGrid: "grid gap-3 sm:grid-cols-2",
 
   skillsSection: "flex flex-col gap-6",
-  skillsIntro: "flex flex-col gap-1",
-  skillsHint: "text-sm text-[var(--muted)]",
-  skillsPanel: [
-    "flex flex-col gap-8 rounded-xl border border-[var(--border)]",
-    "bg-[color-mix(in_srgb,var(--surface)_92%,transparent)] p-5 sm:p-6 shadow-sm",
-    "transition-colors duration-200",
-    "hover:border-[color-mix(in_srgb,var(--accent)_25%,var(--border))]",
-  ].join(" "),
+  skillsIntro: "flex flex-col",
+  skillsPanel: "flex flex-col gap-4",
 } as const;

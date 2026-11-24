@@ -136,9 +136,16 @@ export type SiteInfo = {
   ctaHref: string;
 };
 
-/** One proficiency group — skills render as pill “logos” */
+/** One skill on the workshop wall */
+export type SkillItem = {
+  name: string;
+  /** Official / primary docs URL */
+  docsHref: string;
+};
+
+/** One proficiency group — skills hang as tool medallions */
 export type SkillGroup = {
   id: string;
   label: string;
-  items: string[];
+  items: SkillItem[];
 };
