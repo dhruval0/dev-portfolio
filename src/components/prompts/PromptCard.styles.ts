@@ -2,7 +2,7 @@ import { hover } from "@/styles/hover";
 
 export const promptCardStyles = {
   article: [
-    "group relative flex flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5",
+    "group relative flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5",
     hover.card,
   ].join(" "),
   stamp:

@@ -137,3 +137,268 @@ body {
   border: 2px solid transparent;
   background-clip: padding-box;
 }
+
+/*
+  ============================================
+  MOTION — enter / exit / stagger (layout-safe)
+  ============================================
+*/
+:root {
+  --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-fast: 220ms;
+  --motion-med: 420ms;
+  --motion-slow: 700ms;
+}
+
+@keyframes motion-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes motion-reveal-right {
+  from {
+    opacity: 0;
+    transform: translateX(36px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes motion-reveal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes motion-reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes motion-reveal-polaroid {
+  from {
+    opacity: 0;
+    transform: translateY(48px) rotate(-8deg) scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+}
+
+@keyframes motion-overlay-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes motion-overlay-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes motion-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(-28px) scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes motion-dialog-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+  }
+}
+
+@keyframes motion-paper-in {
+  from {
+    opacity: 0;
+    transform: translateY(56px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes motion-paper-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(32px) scale(0.95);
+  }
+}
+
+@keyframes motion-hit-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes motion-note-body-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.motion-page-enter {
+  animation: motion-page-in 0.75s var(--motion-ease) both;
+}
+
+/* Hidden until JS flips .is-visible — then keyframes run (stronger than transitions) */
+.motion-reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.motion-reveal.is-visible.motion-reveal--up {
+  animation: motion-reveal-up 0.75s var(--motion-ease) both;
+}
+
+.motion-reveal.is-visible.motion-reveal--fade {
+  animation: motion-reveal-fade 0.65s var(--motion-ease) both;
+}
+
+.motion-reveal.is-visible.motion-reveal--left {
+  animation: motion-reveal-left 0.75s var(--motion-ease) both;
+}
+
+.motion-reveal.is-visible.motion-reveal--right {
+  animation: motion-reveal-right 0.75s var(--motion-ease) both;
+}
+
+.motion-reveal.is-visible.motion-reveal--scale {
+  animation: motion-reveal-scale 0.75s var(--motion-ease) both;
+}
+
+.motion-reveal.is-visible.motion-reveal--polaroid {
+  animation: motion-reveal-polaroid 0.9s var(--motion-ease) both;
+}
+
+/* Search overlay + dialog */
+.motion-overlay {
+  animation: motion-overlay-in 0.4s var(--motion-ease) both;
+}
+
+.motion-overlay.is-leaving {
+  animation: motion-overlay-out 0.22s ease-in both;
+}
+
+.motion-dialog {
+  animation: motion-dialog-in 0.45s var(--motion-ease) both;
+}
+
+.motion-dialog.is-leaving {
+  animation: motion-dialog-out 0.22s ease-in both;
+}
+
+.motion-hit {
+  animation: motion-hit-in 0.35s var(--motion-ease) both;
+}
+
+/* Note modal */
+.motion-paper {
+  animation: motion-paper-in 0.5s var(--motion-ease) both;
+}
+
+.motion-paper.is-leaving {
+  animation: motion-paper-out 0.26s ease-in both;
+}
+
+.motion-note-body {
+  animation: motion-note-body-in 0.55s var(--motion-ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-page-enter,
+  .motion-overlay,
+  .motion-overlay.is-leaving,
+  .motion-dialog,
+  .motion-dialog.is-leaving,
+  .motion-paper,
+  .motion-paper.is-leaving,
+  .motion-hit,
+  .motion-note-body,
+  .motion-reveal.is-visible.motion-reveal--up,
+  .motion-reveal.is-visible.motion-reveal--fade,
+  .motion-reveal.is-visible.motion-reveal--left,
+  .motion-reveal.is-visible.motion-reveal--right,
+  .motion-reveal.is-visible.motion-reveal--scale,
+  .motion-reveal.is-visible.motion-reveal--polaroid {
+    animation: none !important;
+  }
+
+  .motion-reveal,
+  .motion-reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

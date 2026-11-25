@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/cn";
+import { usePresence } from "@/components/ui/usePresence";
 import { commandSearchStyles as s } from "./CommandSearch.styles";
 import { useCommandSearch } from "./useCommandSearch";
 
@@ -22,13 +23,19 @@ export function CommandSearch() {
     openHit,
   } = useCommandSearch();
 
-  if (!open) return null;
+  const { mounted, visible } = usePresence(open, 240);
+
+  if (!mounted) return null;
 
   let runningIndex = -1;
+  const leaving = !visible;
 
   return (
     <div
-      className={s.overlay}
+      className={cn(
+        s.overlay,
+        leaving ? "motion-overlay is-leaving" : "motion-overlay",
+      )}
       onMouseDown={(e) => {
         if (e.target === e.currentTarget) closeSearch();
       }}
@@ -37,7 +44,12 @@ export function CommandSearch() {
         role="dialog"
         aria-modal="true"
         aria-label="Search"
-        className={s.dialog}
+        // Remount on open so enter keyframes always re-fire.
+        key={visible ? "search-open" : "search-closing"}
+        className={cn(
+          s.dialog,
+          leaving ? "motion-dialog is-leaving" : "motion-dialog",
+        )}
       >
         <div className={s.inputRow}>
           <span className={s.searchIcon} aria-hidden>
@@ -64,7 +76,7 @@ export function CommandSearch() {
             <p className={s.empty}>nothing matched “{query.trim()}”</p>
           ) : (
             sections.map((section) => (
-              <div key={section.group} className={s.section}>
+              <div key={`${query}-${section.group}`} className={s.section}>
                 <p className={s.groupLabel}>{section.group}</p>
                 <ul>
                   {section.items.map((hit) => {
@@ -80,8 +92,10 @@ export function CommandSearch() {
                           onClick={() => openHit(hit)}
                           className={cn(
                             s.hit,
+                            "motion-hit",
                             active ? s.hitActive : s.hitIdle,
                           )}
+                          style={{ animationDelay: `${index * 35}ms` }}
                         >
                           <div className={s.hitBody}>
                             <div className={s.hitTop}>

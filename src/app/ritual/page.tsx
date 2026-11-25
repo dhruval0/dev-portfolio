@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubpageNav } from "@/components/layout/SubpageNav";
+import { Reveal } from "@/components/ui/Reveal";
 import { RitualFeed } from "./RitualFeed";
 import { ritualPageStyles as s } from "./page.styles";
 
@@ -15,14 +16,20 @@ function RitualFeedFallback() {
 export default function RitualPage() {
   return (
     <div className={s.root}>
-      <SubpageNav />
-      <PageHeader
-        title="The Ritual"
-        description="Live releases for Python, LLM, FastAPI, Flask, Django, Go, Elasticsearch, NoSQL, SQL, Grafana, and Docker. Unfold a card · load more for the rest."
-      />
-      <Suspense fallback={<RitualFeedFallback />}>
-        <RitualFeed />
-      </Suspense>
+      <Reveal delay={20}>
+        <SubpageNav />
+      </Reveal>
+      <Reveal delay={70}>
+        <PageHeader
+          title="The Ritual"
+          description="Live releases for Python, LLM, FastAPI, Flask, Django, Go, Elasticsearch, NoSQL, SQL, Grafana, and Docker. Unfold a card · load more for the rest."
+        />
+      </Reveal>
+      <Reveal delay={140}>
+        <Suspense fallback={<RitualFeedFallback />}>
+          <RitualFeed />
+        </Suspense>
+      </Reveal>
     </div>
   );
 }

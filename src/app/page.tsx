@@ -4,6 +4,8 @@ import { SkillCard } from "@/components/desk/SkillCard";
 import { SocialTag } from "@/components/desk/SocialTag";
 import { StatusPills } from "@/components/desk/StatusPills";
 import { SearchBar } from "@/components/layout/SearchBar";
+import { Reveal } from "@/components/ui/Reveal";
+import { StaggerItem } from "@/components/ui/Stagger";
 import { drawers } from "@/data/drawers";
 import { site, nowStatus } from "@/data/site";
 import { skillGroups } from "@/data/skills";
@@ -14,7 +16,7 @@ export default function DeskPage() {
   return (
     <div className={s.root}>
       <section className={s.hero}>
-        <div className={s.bio}>
+        <Reveal className={s.bio} delay={40} variant="left">
           <p className={s.eyebrow}>{site.eyebrow}</p>
           <h1 className={s.title}>
             {site.roleLine}{" "}
@@ -26,48 +28,63 @@ export default function DeskPage() {
             <p className={s.nowLabel}>Now</p>
             <StatusPills items={nowStatus} />
           </div>
-        </div>
+        </Reveal>
 
-        <div className={s.portraitWrap}>
+        <Reveal className={s.portraitWrap} delay={180} variant="polaroid">
           <PolaroidPortrait
             src={site.portraitSrc}
             caption={site.portraitCaption}
             alt={site.name}
           />
-        </div>
+        </Reveal>
       </section>
 
-      <section className={s.searchSection}>
+      <Reveal as="section" className={s.searchSection} delay={280}>
         <p className={s.searchEyebrow}>Search</p>
         <p className={s.searchHeading}>Looking for something?</p>
         <SearchBar />
-      </section>
+      </Reveal>
 
       <section className={s.section}>
-        <p className={s.sectionLabel}>In the drawers</p>
+        <Reveal>
+          <p className={s.sectionLabel}>In the drawers</p>
+        </Reveal>
         <div className={s.drawersGrid}>
-          {drawers.map((drawer) => (
-            <DrawerCard key={drawer.id} drawer={drawer} />
+          {drawers.map((drawer, index) => (
+            <StaggerItem
+              key={drawer.id}
+              index={index}
+              step={70}
+              className="h-full"
+            >
+              <DrawerCard drawer={drawer} />
+            </StaggerItem>
           ))}
         </div>
       </section>
 
       <section className={s.section}>
-        <p className={s.sectionLabel}>Where to find me</p>
+        <Reveal>
+          <p className={s.sectionLabel}>Where to find me</p>
+        </Reveal>
         <div className={s.socialsGrid}>
-          {socials.map((social) => (
-            <SocialTag key={social.id} social={social} />
+          {socials.map((social, index) => (
+            <StaggerItem key={social.id} index={index} step={50}>
+              <SocialTag social={social} />
+            </StaggerItem>
           ))}
         </div>
       </section>
 
       <section className={s.skillsSection}>
-        <div className={s.skillsIntro}>
+        <Reveal className={s.skillsIntro}>
           <p className={s.sectionLabel}>Skill set — the workshop wall</p>
-        </div>
+        </Reveal>
         <div className={s.skillsPanel}>
-          {skillGroups.map((group) => (
-            <SkillCard key={group.id} group={group} />
+          {skillGroups.map((group, index) => (
+            <StaggerItem key={group.id} index={index} step={90} variant="scale">
+              <SkillCard group={group} />
+            </StaggerItem>
           ))}
         </div>
       </section>

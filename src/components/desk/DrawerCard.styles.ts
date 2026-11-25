@@ -2,7 +2,7 @@ import { hover } from "@/styles/hover";
 
 export const drawerCardStyles = {
   link: [
-    "group relative flex min-h-[180px] flex-col pt-5",
+    "group relative flex h-full min-h-[180px] flex-col pt-5",
     "transition-transform duration-200 ease-out",
     "hover:-translate-y-0.5",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--link)]",

@@ -6,7 +6,8 @@ export const subpageNavStyles = {
   back: [
     "inline-flex items-center rounded-full border border-[var(--border)]",
     "px-3.5 py-2 text-[var(--accent)]",
-    "transition-colors duration-200",
+    "transition-[color,background-color,border-color,transform] duration-200 ease-out",
+    "hover:-translate-x-0.5",
     "hover:border-[color-mix(in_srgb,var(--accent)_35%,var(--border))]",
     "hover:bg-[color-mix(in_srgb,var(--surface)_85%,transparent)]",
   ].join(" "),

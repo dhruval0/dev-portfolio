@@ -9,6 +9,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { NoteModalProvider } from "@/components/note/NoteModalProvider";
 import { SearchProvider } from "@/components/search/SearchProvider";
+import { PageTransition } from "@/components/ui/PageTransition";
 import { cn } from "@/lib/cn";
 import { layoutStyles as s } from "./layout.styles";
 import "./globals.css";
@@ -60,7 +61,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SearchProvider>
             <ThemeToggle />
             <div className={s.shell}>
-              <div className={s.main}>{children}</div>
+              <div className={s.main}>
+                <PageTransition>{children}</PageTransition>
+              </div>
             </div>
             <SiteFooter />
           </SearchProvider>

@@ -2,7 +2,7 @@ import { hover } from "@/styles/hover";
 
 export const blogCardStyles = {
   link: [
-    "group block overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]",
+    "group block h-full overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--card)]",
     hover.card,
   ].join(" "),
   imageWrap:

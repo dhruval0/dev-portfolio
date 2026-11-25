@@ -1,6 +1,7 @@
 "use client";
 
 import type { TechUpdate } from "@/types";
+import { StaggerItem } from "@/components/ui/Stagger";
 import { TechUpdateCard } from "./TechUpdateCard";
 import { techUpdateFeedStyles as s } from "./TechUpdateFeed.styles";
 import { useTechUpdateFeed } from "./useTechUpdateFeed";
@@ -24,11 +25,12 @@ export function TechUpdateFeed({ updates }: TechUpdateFeedProps) {
     <div className={s.root}>
       <div className={s.list}>
         {shown.map((update, index) => (
-          <TechUpdateCard
-            key={update.id}
-            update={update}
-            defaultOpen={index === 0}
-          />
+          <StaggerItem key={update.id} index={index} step={55}>
+            <TechUpdateCard
+              update={update}
+              defaultOpen={index === 0}
+            />
+          </StaggerItem>
         ))}
       </div>
 

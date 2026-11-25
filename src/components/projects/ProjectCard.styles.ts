@@ -2,7 +2,7 @@ import { hover } from "@/styles/hover";
 
 export const projectCardStyles = {
   article: [
-    "group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5",
+    "group flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5",
     hover.card,
   ].join(" "),
   title: "mt-3 font-[family-name:var(--font-display)] text-2xl",

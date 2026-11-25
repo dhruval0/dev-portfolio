@@ -60,11 +60,14 @@ export function useCommandSearch() {
 
   useEffect(() => {
     if (!open) {
-      setQuery("");
-      setActiveIndex(0);
-      return;
+      // Keep query through exit animation so the palette doesn't flash empty.
+      const id = window.setTimeout(() => {
+        setQuery("");
+        setActiveIndex(0);
+      }, 220);
+      return () => window.clearTimeout(id);
     }
-    const id = window.setTimeout(() => inputRef.current?.focus(), 10);
+    const id = window.setTimeout(() => inputRef.current?.focus(), 40);
     return () => window.clearTimeout(id);
   }, [open]);
 

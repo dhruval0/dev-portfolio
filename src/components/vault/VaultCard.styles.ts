@@ -2,7 +2,7 @@ import { hover } from "@/styles/hover";
 
 export const vaultCardStyles = {
   article: [
-    "group flex flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5 shadow-sm",
+    "group flex h-full flex-col rounded-lg border border-[var(--border)] bg-[var(--card)] p-5 shadow-sm",
     hover.card,
   ].join(" "),
   type: "font-mono text-[10px] uppercase tracking-wider text-[var(--accent)]",
